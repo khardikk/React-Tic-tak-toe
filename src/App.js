@@ -11,6 +11,11 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
+// if there is a winner or if the square is already filled, return early and ignore the click
+    if (squares[i]) {
+      return;
+    }
+
     //creates a copy of the squares array (nextSquares) with the JavaScript slice() Array method.
     const nextSquares = squares.slice();
     if (xIsNext) {
