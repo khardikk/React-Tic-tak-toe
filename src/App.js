@@ -6,14 +6,22 @@ function Square({value,onSquareClick}) {
     </button>;
 }
 export default function Board() {
-
+  // Boolean to determine which player goes next/ flip the value between X and O
+  const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
     //creates a copy of the squares array (nextSquares) with the JavaScript slice() Array method.
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
+    // update the squares state with the nextSquares array
     setSquares(nextSquares);
+    // flip the value of xIsNext
+    setXIsNext(!xIsNext);
   }
 
   return (
